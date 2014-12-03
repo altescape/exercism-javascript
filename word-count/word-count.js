@@ -6,12 +6,16 @@
 
 var words = function(input){
 
-    var words = input.split(" ");
+    var sanitized_input = input.replace(/\n/g, " "); // replace newlines with space
+
+    var words = sanitized_input.split(" ");
     var counts = {};
 
     words.map(function(word){
-        var num = word;
-        counts[num] = counts[num] ? counts[num] + 1 : 1;
+        var wordCount = word;
+        console.log(typeof counts[wordCount]);
+        if (typeof counts[wordCount] === "function") {}
+        return counts[wordCount] = counts[wordCount] ? counts[wordCount] + 1 : 1;
     });
 
     return counts;
