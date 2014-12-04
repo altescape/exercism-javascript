@@ -6,20 +6,18 @@
 
 var words = function(input){
 
-    var sanitized_input = input.replace(/\n/g, " "); // replace newlines with space
+    var sanitizedInput = input.replace(/\n/g, " "); // replace newlines with space, others could be added...
 
-    var words = sanitized_input.split(" ");
-    var counts = {};
+    var words = sanitizedInput.split(" "),
+        // Creating an object with no properties is essential to make last test pass
+        // see: http://stackoverflow.com/a/21079232/1945990 for explanation
+        results = Object.create(null);
 
     words.map(function(word){
-        var wordCount = word;
-        console.log(typeof counts[wordCount]);
-        if (typeof counts[wordCount] === "function") {}
-        return counts[wordCount] = counts[wordCount] ? counts[wordCount] + 1 : 1;
+        return results[word] = results[word] ? results[word] + 1 : 1;
     });
 
-    return counts;
-
+    return results;
 };
 
 module.exports = words;
